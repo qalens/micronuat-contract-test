@@ -1,0 +1,6 @@
+micronaut:
+  application:
+    name: productService
+
+  server:
+    port: 8081

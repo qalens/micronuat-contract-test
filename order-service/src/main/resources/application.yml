@@ -1,0 +1,5 @@
+micronaut:
+  application:
+    name: orderService
+product:
+  url: http://localhost:8081/product

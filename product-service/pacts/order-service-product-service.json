@@ -1,0 +1,143 @@
+{
+  "provider": {
+    "name": "product-service"
+  },
+  "consumer": {
+    "name": "order-service"
+  },
+  "interactions": [
+    {
+      "description": "Get Quote for Product for quantity 1.0",
+      "request": {
+        "method": "GET",
+        "path": "/product/1/quote",
+        "query": {
+          "amount": [
+            "1.0"
+          ]
+        }
+      },
+      "response": {
+        "status": 200,
+        "headers": {
+          "Content-Type": "application/json; charset=UTF-8"
+        },
+        "body": {
+          "product": {
+            "name": "Milk",
+            "id": 1
+          },
+          "amount": {
+            "calculatedPrice": 480,
+            "discountPercentage": 0.1,
+            "shippingCharges": 5,
+            "finalCost": 408.45,
+            "discountAmount": 96,
+            "tax": 19.45
+          },
+          "quantity": 1
+        },
+        "matchingRules": {
+          "body": {
+            "$.product.id": {
+              "matchers": [
+                {
+                  "match": "number"
+                }
+              ],
+              "combine": "AND"
+            },
+            "$.product.name": {
+              "matchers": [
+                {
+                  "match": "type"
+                }
+              ],
+              "combine": "AND"
+            },
+            "$.quantity": {
+              "matchers": [
+                {
+                  "match": "number"
+                }
+              ],
+              "combine": "AND"
+            },
+            "$.amount.calculatedPrice": {
+              "matchers": [
+                {
+                  "match": "number"
+                }
+              ],
+              "combine": "AND"
+            },
+            "$.amount.discountAmount": {
+              "matchers": [
+                {
+                  "match": "number"
+                }
+              ],
+              "combine": "AND"
+            },
+            "$.amount.discountPercentage": {
+              "matchers": [
+                {
+                  "match": "number"
+                }
+              ],
+              "combine": "AND"
+            },
+            "$.amount.tax": {
+              "matchers": [
+                {
+                  "match": "number"
+                }
+              ],
+              "combine": "AND"
+            },
+            "$.amount.shippingCharges": {
+              "matchers": [
+                {
+                  "match": "number"
+                }
+              ],
+              "combine": "AND"
+            },
+            "$.amount.finalCost": {
+              "matchers": [
+                {
+                  "match": "number"
+                }
+              ],
+              "combine": "AND"
+            }
+          },
+          "header": {
+            "Content-Type": {
+              "matchers": [
+                {
+                  "match": "regex",
+                  "regex": "application/json(;\\s?charset=[\\w\\-]+)?"
+                }
+              ],
+              "combine": "AND"
+            }
+          }
+        }
+      },
+      "providerStates": [
+        {
+          "name": "Product With Id 1 exists"
+        }
+      ]
+    }
+  ],
+  "metadata": {
+    "pactSpecification": {
+      "version": "3.0.0"
+    },
+    "pact-jvm": {
+      "version": "4.0.10"
+    }
+  }
+}
