@@ -51,7 +51,7 @@ dependencies {
     testImplementation("io.micronaut.test:micronaut-test-junit5")
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine")
 
-    compile group: 'au.com.dius', name: 'pact-jvm-provider-junit5', version: '4.0.10'
+//    compile group: 'au.com.dius', name: 'pact-jvm-provider-junit5', version: '4.0.10'
     compile group: 'au.com.dius', name: 'pact-jvm-consumer-junit5', version: '4.0.10'
     compile group: 'au.com.dius', name: 'pact-jvm-consumer-java8', version: '4.0.10'
 
@@ -61,22 +61,8 @@ test.classpath += configurations.developmentOnly
 
 mainClassName = "order.service.Application"
 
-// use JUnit 5 platform
-//test {
-//    useJUnitPlatform()
-//}
-task unitTests(type:Test){
-    useJUnitPlatform();
-}
-task pactConsumerTests(type:Test){
-    useJUnitPlatform{
-        includeTags "pactConsumer"
-    }
-}
-task pactBrokerConsumerTests(type:Test){
-    useJUnitPlatform{
-        includeTags "pactBrokerConsumer"
-    }
+test {
+    useJUnitPlatform()
 }
 
 java {
